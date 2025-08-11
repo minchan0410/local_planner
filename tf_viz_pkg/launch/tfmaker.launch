@@ -1,7 +1,6 @@
 <launch>
     <param name="/use_sim_time" value="true" />
 
-    <node pkg="tf_viz_pkg" type="tfMaker.py" name="tfMaker" output="screen" />/
     <node name="tfmaker_node" pkg="tf_viz_pkg" type="tfMaker" output="screen" /> 
     <node pkg="tf_viz_pkg" type="pathPub.py" name="pathPub" output="screen" />
 
