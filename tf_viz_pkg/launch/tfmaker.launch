@@ -1,0 +1,18 @@
+<launch>
+    <param name="/use_sim_time" value="true" />
+
+    <node pkg="tf_viz_pkg" type="tfMaker.py" name="tfMaker" output="screen" />/
+    <node name="tfmaker_node" pkg="tf_viz_pkg" type="tfMaker" output="screen" /> 
+    <node pkg="tf_viz_pkg" type="pathPub.py" name="pathPub" output="screen" />
+
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="faketf" args="0 0 0 0 0 0 map base_link_gps" /> -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="gps_base_to_base" args="-0.60 0 -1.23 0 0 0 base_link_gps base_link" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_lidar" args="0.82 0 0.45 0 0 0 base_link velodyne" />
+
+
+    <!-- occ_node -->
+    <node pkg="occ-map" type="occ_node" name="occ_node" />
+
+    <!-- rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find tf_viz_pkg)/rviz/testr.rviz" />
+</launch>
